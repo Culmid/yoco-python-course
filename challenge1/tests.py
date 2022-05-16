@@ -26,15 +26,22 @@ class CryptoTests(unittest.TestCase):
     def test_lower_case_word(self):
         self.assertEqual(rot13("abcdefghijklmnopqrstuvwxyz"),
                          "nopqrstuvwxyzabcdefghijklm")
+        self.assertEqual(rot13("nopqrstuvwxyzabcdefghijklm"),
+                         "abcdefghijklmnopqrstuvwxyz")
 
     def test_upper_case_word(self):
         self.assertEqual(rot13("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
                          "NOPQRSTUVWXYZABCDEFGHIJKLM")
+        self.assertEqual(rot13("NOPQRSTUVWXYZABCDEFGHIJKLM"),
+                         "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
     def test_full_alpha(self):
         self.assertEqual(
             rot13("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
             "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm")
+        self.assertEqual(
+            rot13("NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"),
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
 
 
 if __name__ == "__main__":
