@@ -43,6 +43,31 @@ class CryptoTests(unittest.TestCase):
             rot13("NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"),
             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
 
+    def test_random_word_examples(self):
+        words = [["aha", "nun"], ["ant", "nag"], ["balk", "onyx"],
+                 ["bar", "one"], ["barf", "ones"], ["be", "or"],
+                 ["bin", "ova"], ["ebbs", "roof"], ["envy", "rail"],
+                 ["er", "re"], ["errs", "reef"], ["flap", "sync"],
+                 ["fur", "she"], ["gel", "try"], ["gnat", "tang"],
+                 ["irk", "vex"], ["clerk", "pyrex"], ["purely", "cheryl"],
+                 ["png", "cat"], ["sha", "fun"], ["furby", "sheol"],
+                 ["terra", "green"], ["what", "jung"], ["url", "hey"],
+                 ["purpura", "chechen"], ["shone", "fubar"], ["Ares", "Nerf"],
+                 ["abjurer", "nowhere"]]
+
+        for [w1, w2] in words:
+            self.assertEqual(rot13(w1), w2)
+            self.assertEqual(rot13(w2), w1)
+
+    def test_max_words(self):
+        self.assertEqual(rot13("ohvyqvat n jro NCV sebz fpengpu"),
+                         "building a web API from scratch")
+        self.assertEqual(rot13("n arj fbpvny zrqvn cyngsbez"),
+                         "a new social media platform")
+
+    def test_punctuation(self):
+        self.assertEqual(rot13("Hello, World!"), "Uryyb, Jbeyq!")
+
 
 if __name__ == "__main__":
     unittest.main()
