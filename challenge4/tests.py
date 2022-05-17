@@ -16,6 +16,9 @@ class TestDuplicate(unittest.TestCase):
         duplicate.delete(".", interactive=False)
 
         # Test Removal Calls
+        mock_os.walk.assert_called_once_with(".")
+        mock_filecmp.cmp.assert_called_once_with(
+            "./test.txt", "./test.txt", shallow=False)
         mock_os.remove.assert_called_once_with("./test.txt")
 
     @mock.patch("duplicate.os")
@@ -29,6 +32,8 @@ class TestDuplicate(unittest.TestCase):
         duplicate.delete(".", interactive=False)
 
         # Test Removal Calls
+        mock_os.walk.assert_called_once_with(".")
+        mock_filecmp.cmp.assert_not_called()
         mock_os.remove.assert_not_called()
 
     @mock.patch("duplicate.os")
@@ -42,6 +47,9 @@ class TestDuplicate(unittest.TestCase):
         duplicate.delete(".", interactive=False)
 
         # Test Removal Calls
+        mock_os.walk.assert_called_once_with(".")
+        mock_filecmp.cmp.assert_called_once_with(
+            "./test.txt", "./test.txt", shallow=False)
         mock_os.remove.assert_not_called()
 
 
