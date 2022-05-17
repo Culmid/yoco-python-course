@@ -1,6 +1,5 @@
 def rot13(plaintext: str) -> str:
     """Returns the ciphertext resulting from encrypting `plaintext` using the rot13 algorithm"""
-    # ... do the encryption...
     return "".join([translateCharacter(c) if c.isalpha() else c for c in plaintext])
 
 
