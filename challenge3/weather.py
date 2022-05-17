@@ -1,18 +1,38 @@
 from operator import itemgetter
 import os
+from typing import List, Tuple
 import requests
 from dotenv import load_dotenv
 
 
 def weather() -> None:
+
+    country, region, city, lat, lon = getGeoLocation()
+    weather, temp, wind, cloud = getWeather(lat, lon)
+
+    print(f"{city}, {region}, {country}:")
+    print("-" * 100)
+    print(f"Weather: {weather['main']} -> {weather['description']}")
+    print(f"Temperature:")
+    print(f"\tCurrent: {temp['temp']}°C | Feels Like: {temp['feels_like']}°C")
+    print(f"\tMin: {temp['temp_min']}°C | Max: {temp['temp_max']}°C")
+    print(f"\tHumidity: {temp['humidity']}%")
+    print(f"Wind: {round(float(wind['speed']) * 3.6, 2)} km/h {wind['deg']}°")
+    print(f"Cloud Coverage: {cloud['all']}%")
+
+
+def getGeoLocation() -> Tuple[str, str, str, str, str]:
     try:
-        # Get Geo-Location from IP
         response = requests.request("GET", "http://ipwho.is/").json()
         country, region, city, lat, lon = itemgetter(
             "country", "region", "city", "latitude", "longitude")(response)
     except Exception as e:
         print(e)
 
+    return country, region, city, lat, lon
+
+
+def getWeather(lat: int, lon: int) -> Tuple[object, object, object, object]:
     load_dotenv()
     API_KEY = os.getenv("X-RapidAPI-Key")
 
@@ -35,15 +55,7 @@ def weather() -> None:
         print(e)
 
     weather = weather[0]
-    print(f"{city}, {region}, {country}:")
-    print("-" * 100)
-    print(f"Weather: {weather['main']} -> {weather['description']}")
-    print(f"Temperature:")
-    print(f"\tCurrent: {temp['temp']}°C | Feels Like: {temp['feels_like']}°C")
-    print(f"\tMin: {temp['temp_min']}°C | Max: {temp['temp_max']}°C")
-    print(f"\tHumidity: {temp['humidity']}%")
-    print(f"Wind: {round(float(wind['speed']) * 3.6, 2)} km/h {wind['deg']}°")
-    print(f"Cloud Coverage: {cloud['all']}%")
+    return weather, temp, wind, cloud
 
 
 if __name__ == "__main__":
