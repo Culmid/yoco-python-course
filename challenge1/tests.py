@@ -56,8 +56,9 @@ class CryptoTests(unittest.TestCase):
                  ["abjurer", "nowhere"]]
 
         for [w1, w2] in words:
-            self.assertEqual(rot13(w1), w2)
-            self.assertEqual(rot13(w2), w1)
+            with self.subTest(w1=w1, w2=w2):
+                self.assertEqual(rot13(w1), w2)
+                self.assertEqual(rot13(w2), w1)
 
     def test_max_words(self):
         self.assertEqual(rot13("ohvyqvat n jro NCV sebz fpengpu"),
