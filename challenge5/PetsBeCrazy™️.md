@@ -79,7 +79,7 @@ GET /admin/create
 ### As an admin, I can save a new dog food (what is the verb + route of the request that’s triggered when I click “Save”?)
 
 ```bash
-POST /admin/products
+POST /admin/create
 Body:
 {
   "category": "food",
