@@ -71,10 +71,10 @@ Header:
 ### As an admin, I can go to a page where I can add a new dog food (what is the URL of the page I am on when I am typing in the new dog food details?)
 
 ```bash
-GET /admin/products
+GET /admin/create
 ```
 
--> Assume product hub where admin can add/edit/delete products, all in one place.
+-> Generic page to create any product, with form to specify details needed. See next endpoint for details.
 
 ### As an admin, I can save a new dog food (what is the verb + route of the request that’s triggered when I click “Save”?)
 
