@@ -1,0 +1,2 @@
+This is the most deeply nested file, but its contents differ from info.txt.
+So, it must not be available for deletion.
